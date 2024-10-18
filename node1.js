@@ -59,25 +59,9 @@ const orbitdb = await createOrbitDB({ ipfs, id: `nodejs-${id}`, directory: `./or
 
 let db
 
-if (process.argv.length > 2) {
-  const remoteDBAddress = process.argv.pop()
-  
-  db = await orbitdb.open(remoteDBAddress)
-
-  await db.add(`hello world from peer ${id}`)
-
-  for await (const res of db.iterator()) {
-    console.log(res)
-  }
-} else {
-  db = await orbitdb.open('nodejs', { AccessController: OrbitDBAccessController({ write: ['*'] }) })
-  
-  console.log(db.address)
-
-  db.events.on('update', event => {
-    console.log('update', event)
-  })
-}
+db = await orbitdb.open('nodejs', { AccessController: OrbitDBAccessController({ write: ['*'] }) })
+await db.add("Hello from orbitdb node 1")
+console.log(db.address)
 
 process.on('SIGINT', async () => {
   console.log("exiting...")
