@@ -4,7 +4,7 @@
 
 1. node node1.js
    
-2. copy orbitadb address
+2. copy orbitdbaddress
    
 3. open new terminal
    
