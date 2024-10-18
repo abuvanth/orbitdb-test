@@ -62,7 +62,7 @@ let db
 if (process.argv.length > 2) {
   const remoteDBAddress = process.argv.pop()
   
-  db = await orbitdb.open('nodejs', { AccessController: OrbitDBAccessController({ write: ['*'] }) })
+  db = await orbitdb.open(remoteDBAddress)
   
   console.log(await db.all())
 
